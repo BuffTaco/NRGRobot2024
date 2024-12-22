@@ -32,6 +32,7 @@ import frc.robot.commands.InterruptAll;
 import frc.robot.commands.LEDs;
 import frc.robot.commands.NoteCommands;
 import frc.robot.commands.Pathfinding;
+import frc.robot.commands.ProfiledDriveStraight;
 import frc.robot.commands.SetShooterContinous;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.IndexerSubsystem;
@@ -95,7 +96,7 @@ public class RobotContainer {
 
     driverController.start().onTrue(DriveCommands.resetOrientation(subsystems));
     driverController.back().onTrue(new InterruptAll(subsystems));
-    driverController.a().onTrue(Pathfinding.pathFindToSpeakerFront());
+    driverController.a().onTrue(new ProfiledDriveStraight(subsystems, 3));
     driverController.b().onTrue(DriveCommands.autoOrientToSpeaker(subsystems));
     driverController.b().onFalse(DriveCommands.disableAutoOrientation(subsystems));
     driverController.x().onTrue(DriveCommands.autoOrientToNote(subsystems));
